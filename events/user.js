@@ -12,7 +12,6 @@ module.exports = function register_events(client, shouldkickarr) {
         const clientInfo = channel.getUserInfo(channel.clientUser);
         if (clientInfo != null && (clientInfo.perm == 1 || clientInfo.perm == 4 || clientInfo.perm == 8)) {
 
-            channel.sendChat(`${user.nickname}님 환영합니다.\n처음 오셨다면 *꼭* "안녕하세요"를 포함해서 인사해주세요!\n만약 10분 이내에 인사 메시지가 없는 경우, 스팸봇으로 간주되어 내보내기될수 있음을 알립니다.\n\n입장 시각: ${new Date()}`);
             console.log(`[JOIN] ${user.nickname} (${user.userId})님이 ${channel.getDisplayName()} (${channel.channelId})에 입장하셨습니다.`)
 
             shouldkickarr.push({
@@ -43,12 +42,9 @@ module.exports = function register_events(client, shouldkickarr) {
         const clientInfo = channel.getUserInfo(channel.clientUser);
 
         if (clientInfo != null && (clientInfo.perm == 1 || clientInfo.perm == 4 || clientInfo.perm == 8)) {
-            if (data.text.includes("안녕하세요")){
-                const arrayindex = shouldkickarr.findIndex(a => a.channelId.eq(channel.channelId) && a.userId.eq(data.chat.sender.userId));
-                if (arrayindex != -1) {
-                    channel.sendChat("인증되었습니다. 환영합니다! :D")
-                    shouldkickarr.splice(arrayindex, 1);
-                }
+            const arrayindex = shouldkickarr.findIndex(a => a.channelId.eq(channel.channelId) && a.userId.eq(data.chat.sender.userId));
+            if (arrayindex != -1) {
+                shouldkickarr.splice(arrayindex, 1);
             }
             
         }
@@ -78,7 +74,6 @@ module.exports = function register_events(client, shouldkickarr) {
                 continue;
             }
 
-            channel.sendChat(`ID ${a.userId}가 10분후에도 메세지가 없어 내보내기됩니다.`)
             channel.kickUser({
                 userId: a.userId
             });
