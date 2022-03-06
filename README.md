@@ -1,5 +1,7 @@
 # kakaotalk-antispam-bot
-오픈챗방 스팸질때문에 개같아서 만든 봇입니다.
+Archived: [node-kakao가 지원 중단되었으며](https://github.com/storycraft/node-kakao/issues/812), 게시판에서 스팸이 올라오는 경우가 생각보다 적어져서 아카이브화합니다.
+
+오픈챗방 스팸질때문에 만든 봇입니다.
 `config_example.js`를 `config.js`로 이름 바꾸어서 사용하심 됩니다.
 
 ```
